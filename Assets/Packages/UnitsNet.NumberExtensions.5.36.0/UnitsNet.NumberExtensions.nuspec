@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>UnitsNet.NumberExtensions</id>
+    <version>5.36.0</version>
+    <title>Units.NET NumberExtensions</title>
+    <authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>logo-32.png</icon>
+    <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <description>Adds extension methods to number types to more easily create quantities, such as 5.Meters() instead of Length.FromMeters(5).</description>
+    <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>
+    <tags>UnitsNet Extensions NumberToExtensions NumberToUnitsExtensions NumberExtensions NumberToUnits convert conversion parse</tags>
+    <repository url="https://github.com/angularsen/UnitsNet" />
+    <dependencies>
+      <group targetFramework="net7.0">
+        <dependency id="UnitsNet" version="5.36.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="UnitsNet" version="5.36.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,1239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpProp</name>
+    </assembly>
+    <members>
+        <member name="T:SharpProp.FluidInfoAttribute">
+            <summary>
+                Fluid predefined info.
+            </summary>
+            <param name="name">CoolProp internal name.</param>
+            <param name="backend">Type of CoolProp backend.</param>
+            <param name="pure">True if pure or pseudo-pure fluid.</param>
+            <param name="mixType">Mass-based or volume-based mixture.</param>
+            <param name="fractionMin">Minimum possible fraction.</param>
+            <param name="fractionMax">Maximum possible fraction.</param>
+        </member>
+        <member name="M:SharpProp.FluidInfoAttribute.#ctor(System.String,System.String,System.Boolean,SharpProp.Mix,System.Double,System.Double)">
+            <summary>
+                Fluid predefined info.
+            </summary>
+            <param name="name">CoolProp internal name.</param>
+            <param name="backend">Type of CoolProp backend.</param>
+            <param name="pure">True if pure or pseudo-pure fluid.</param>
+            <param name="mixType">Mass-based or volume-based mixture.</param>
+            <param name="fractionMin">Minimum possible fraction.</param>
+            <param name="fractionMax">Maximum possible fraction.</param>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.Name">
+            <summary>
+                CoolProp internal name.
+            </summary>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.Backend">
+            <summary>
+                Type of CoolProp backend.
+            </summary>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.Pure">
+            <summary>
+                True if pure or pseudo-pure fluid.
+            </summary>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.MixType">
+            <summary>
+                Mass-based or volume-based mixture.
+            </summary>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.FractionMin">
+            <summary>
+                Minimum possible fraction.
+            </summary>
+        </member>
+        <member name="P:SharpProp.FluidInfoAttribute.FractionMax">
+            <summary>
+                Maximum possible fraction.
+            </summary>
+        </member>
+        <member name="T:SharpProp.FluidsList">
+            <summary>
+                List of CoolProp fluids.
+                See more info about CoolProp
+                <a href="http://www.coolprop.org/fluid_properties/PurePseudoPure.html"> pure and pseudo-pure fluids</a>,
+                <a href="http://www.coolprop.org/fluid_properties/Incompressibles.html">incompressible fluids</a> and
+                <a href="http://www.coolprop.org/coolprop/HighLevelAPI.html#predefined-mixtures">predefined mixtures</a>.
+            </summary>
+        </member>
+        <member name="T:SharpProp.InputPairs">
+            <summary>
+                CoolProp input pairs.
+            </summary>
+        </member>
+        <member name="T:SharpProp.Mix">
+            <summary>
+                Mixture types.
+            </summary>
+        </member>
+        <member name="F:SharpProp.Mix.Mass">
+            <summary>
+                Mass-based mixture.
+            </summary>
+        </member>
+        <member name="F:SharpProp.Mix.Volume">
+            <summary>
+                Volume-based mixture.
+            </summary>
+        </member>
+        <member name="T:SharpProp.Parameters">
+            <summary>
+                CoolProp parameter keys.
+            </summary>
+        </member>
+        <member name="T:SharpProp.Phases">
+            <summary>
+                Phase states of fluids and mixtures.
+            </summary>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.CoolPropName(SharpProp.FluidsList)">
+            <summary>
+                CoolProp internal name.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns>CoolProp internal name.</returns>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.CoolPropBackend(SharpProp.FluidsList)">
+            <summary>
+                CoolProp backend type.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns>CoolProp backend type.</returns>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.Pure(SharpProp.FluidsList)">
+            <summary>
+                <c>true</c> if the fluid pure of pseudo-pure.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns><c>true</c> if the fluid pure of pseudo-pure.</returns>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.MixType(SharpProp.FluidsList)">
+            <summary>
+                Mixture type.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns>Mixture type.</returns>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.FractionMin(SharpProp.FluidsList)">
+            <summary>
+                Minimum possible fraction.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns>Minimum possible fraction (by default, %).</returns>
+        </member>
+        <member name="M:SharpProp.FluidsListExtensions.FractionMax(SharpProp.FluidsList)">
+            <summary>
+                Maximum possible fraction.
+            </summary>
+            <param name="member">The <see cref="T:SharpProp.FluidsList"/> member.</param>
+            <returns>Maximum possible fraction (by default, %).</returns>
+        </member>
+        <member name="T:SharpProp.AbstractFluid">
+            <inheritdoc cref="T:SharpProp.IAbstractFluid"/>
+        </member>
+        <member name="T:SharpProp.Fluid">
+            <inheritdoc cref="T:SharpProp.IFluid"/>
+        </member>
+        <member name="M:SharpProp.Fluid.#ctor(SharpProp.FluidsList,System.Nullable{UnitsNet.Ratio})">
+            <summary>
+                <inheritdoc cref="T:SharpProp.IFluid"/>
+            </summary>
+            <param name="name">Selected fluid name.</param>
+            <param name="fraction">
+                Mass-based or volume-based fraction for binary mixtures (optional).
+            </param>
+            <exception cref="T:System.ArgumentException">
+                Invalid fraction value! It should be in
+                [{fractionMin};{fractionMax}] %. Entered value = {fraction} %.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Need to define the fraction!
+            </exception>
+        </member>
+        <member name="T:SharpProp.IAbstractFluid">
+            <summary>
+                Abstract fluid.
+            </summary>
+        </member>
+        <member name="M:SharpProp.IAbstractFluid.Update(SharpProp.IKeyedInput{SharpProp.Parameters},SharpProp.IKeyedInput{SharpProp.Parameters})">
+            <summary>
+                Updates the state of the fluid.
+            </summary>
+            <param name="firstInput">First input property.</param>
+            <param name="secondInput">Second input property.</param>
+            <exception cref="T:System.ArgumentException">
+                Need to define 2 unique inputs!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IAbstractFluid.Reset">
+            <summary>
+                Resets all non-trivial properties.
+            </summary>
+        </member>
+        <member name="M:SharpProp.IAbstractFluid.SpecifyPhase(SharpProp.Phases)">
+            <summary>
+                Specify the phase state for all further calculations.
+            </summary>
+            <param name="phase">Phase state.</param>
+        </member>
+        <member name="M:SharpProp.IAbstractFluid.UnspecifyPhase">
+            <summary>
+                Unspecify the phase state and
+                go back to calculating it based on the inputs.
+            </summary>
+        </member>
+        <member name="T:SharpProp.IFluid">
+            <summary>
+                Pure/pseudo-pure fluid or binary mixture.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluid.Name">
+            <summary>
+                Selected fluid name.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluid.Fraction">
+            <summary>
+                Mass-based or volume-based fraction
+                for binary mixtures (by default, %).
+            </summary>
+        </member>
+        <member name="M:SharpProp.IFluid.WithState(SharpProp.IKeyedInput{SharpProp.Parameters},SharpProp.IKeyedInput{SharpProp.Parameters})">
+            <summary>
+                Returns a new fluid instance with a defined state.
+            </summary>
+            <param name="firstInput">First input property.</param>
+            <param name="secondInput">Second input property.</param>
+            <returns>A new fluid instance with a defined state.</returns>
+            <exception cref="T:System.ArgumentException">
+                Need to define 2 unique inputs!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.IsentropicCompressionTo(UnitsNet.Pressure)">
+            <summary>
+                The process of isentropic compression to a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <returns>
+                The state of the fluid at the end of the process.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                Compressor outlet pressure should be higher than inlet pressure!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.CompressionTo(UnitsNet.Pressure,UnitsNet.Ratio)">
+            <summary>
+                The process of compression to a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <param name="isentropicEfficiency">
+                Compressor isentropic efficiency.
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                Compressor outlet pressure should be higher than inlet pressure!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid compressor isentropic efficiency!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.IsenthalpicExpansionTo(UnitsNet.Pressure)">
+            <summary>
+                The process of isenthalpic expansion to a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                Expansion valve outlet pressure should be lower than inlet pressure!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.IsentropicExpansionTo(UnitsNet.Pressure)">
+            <summary>
+                The process of isentropic expansion to a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                Expander outlet pressure should be lower than inlet pressure!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.ExpansionTo(UnitsNet.Pressure,UnitsNet.Ratio)">
+            <summary>
+                The process of expansion to a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <param name="isentropicEfficiency">
+                Expander isentropic efficiency.
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                Expander outlet pressure should be lower than inlet pressure!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid expander isentropic efficiency!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.CoolingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the temperature should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.CoolingTo(UnitsNet.SpecificEnergy,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling to a given enthalpy.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the enthalpy should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.HeatingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of heating to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the heating process, the temperature should increase!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.HeatingTo(UnitsNet.SpecificEnergy,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of heating to a given enthalpy.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the heating process, the enthalpy should increase!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IFluid.BubblePointAt(UnitsNet.Pressure)">
+            <summary>
+                Returns a bubble point at a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <returns>A bubble point at a given pressure.</returns>
+        </member>
+        <member name="M:SharpProp.IFluid.BubblePointAt(UnitsNet.Temperature)">
+            <summary>
+                Returns a bubble point at a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <returns>A bubble point at a given temperature.</returns>
+        </member>
+        <member name="M:SharpProp.IFluid.DewPointAt(UnitsNet.Pressure)">
+            <summary>
+                Returns a dew point at a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <returns>A dew point at a given pressure.</returns>
+        </member>
+        <member name="M:SharpProp.IFluid.DewPointAt(UnitsNet.Temperature)">
+            <summary>
+                Returns a dew point at a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <returns>A dew point at a given temperature.</returns>
+        </member>
+        <member name="M:SharpProp.IFluid.TwoPhasePointAt(UnitsNet.Pressure,UnitsNet.Ratio)">
+            <summary>
+                Returns a two-phase point at a given pressure.
+            </summary>
+            <param name="pressure">Pressure.</param>
+            <param name="quality">Vapor quality.</param>
+            <returns>Two-phase point at a given pressure.</returns>
+        </member>
+        <member name="M:SharpProp.IFluid.Mixing(UnitsNet.Ratio,SharpProp.IFluid,UnitsNet.Ratio,SharpProp.IFluid)">
+            <summary>
+                The mixing process.
+            </summary>
+            <param name="firstSpecificMassFlow">
+                Specific mass flow rate of the fluid at the first state.
+            </param>
+            <param name="first">Fluid at the first state.</param>
+            <param name="secondSpecificMassFlow">
+                Specific mass flow rate of the fluid at the second state.
+            </param>
+            <param name="second">Fluid at the second state.</param>
+            <returns>The state of the fluid at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                The mixing process is possible only for the same fluids!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                The mixing process is possible only for flows with the same pressure!
+            </exception>
+        </member>
+        <member name="T:SharpProp.IFluidState">
+            <summary>
+                Fluid state.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Compressibility">
+            <summary>
+                Compressibility factor (dimensionless).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Conductivity">
+            <summary>
+                Thermal conductivity (by default, W/m/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.CriticalPressure">
+            <summary>
+                Absolute pressure at the critical point (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.CriticalTemperature">
+            <summary>
+                Temperature at the critical point (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Density">
+            <summary>
+                Mass density (by default, kg/m3).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.DynamicViscosity">
+            <summary>
+                Dynamic viscosity (by default, mPa*s).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Enthalpy">
+            <summary>
+                Mass specific enthalpy (by default, kJ/kg).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Entropy">
+            <summary>
+                Mass specific entropy (by default, kJ/kg/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.FreezingTemperature">
+            <summary>
+                Temperature at the freezing point
+                (for incompressible fluids) (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.InternalEnergy">
+            <summary>
+                Mass specific internal energy (by default, kJ/kg).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.KinematicViscosity">
+            <summary>
+                Kinematic viscosity (by default, cSt).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.MaxPressure">
+            <summary>
+                Maximum pressure limit (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.MaxTemperature">
+            <summary>
+                Maximum temperature limit (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.MinPressure">
+            <summary>
+                Minimum pressure limit (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.MinTemperature">
+            <summary>
+                Minimum temperature limit (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.MolarMass">
+            <summary>
+                Molar mass (by default, g/mol).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Phase">
+            <summary>
+                Phase state.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Prandtl">
+            <summary>
+                Prandtl number (dimensionless).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Pressure">
+            <summary>
+                Absolute pressure (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Quality">
+            <summary>
+                Mass vapor quality (by default, %).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.SoundSpeed">
+            <summary>
+                Sound speed (by default, m/s).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.SpecificHeat">
+            <summary>
+                Mass specific constant pressure specific heat (by default, kJ/kg/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.SpecificVolume">
+            <summary>
+                Mass specific volume (by default, m3/kg).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.SurfaceTension">
+            <summary>
+                Surface tension (by default, N/m).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.Temperature">
+            <summary>
+                Temperature (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.TriplePressure">
+            <summary>
+                Absolute pressure at the triple point (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IFluidState.TripleTemperature">
+            <summary>
+                Temperature at the triple point (by default, °C).
+            </summary>
+        </member>
+        <member name="T:SharpProp.IMixture">
+            <summary>
+                Mass-based mixture of pure fluids.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IMixture.Fluids">
+            <summary>
+                List of selected names of pure fluids.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IMixture.Fractions">
+            <summary>
+                List of mass-based fractions (by default, %).
+            </summary>
+        </member>
+        <member name="M:SharpProp.IMixture.WithState(SharpProp.IKeyedInput{SharpProp.Parameters},SharpProp.IKeyedInput{SharpProp.Parameters})">
+            <summary>
+                Returns a new mixture instance with a defined state.
+            </summary>
+            <param name="firstInput">First input property.</param>
+            <param name="secondInput">Second input property.</param>
+            <returns>A new mixture instance with a defined state.</returns>
+            <exception cref="T:System.ArgumentException">
+                Need to define 2 unique inputs!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IMixture.CoolingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the mixture at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the temperature should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IMixture.HeatingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of heating to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the mixture at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the heating process, the temperature should increase!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="T:SharpProp.Mixture">
+            <inheritdoc cref="T:SharpProp.IMixture"/>
+        </member>
+        <member name="M:SharpProp.Mixture.#ctor(System.Collections.Generic.IEnumerable{SharpProp.FluidsList},System.Collections.Generic.IEnumerable{UnitsNet.Ratio})">
+            <summary>
+                <inheritdoc cref="T:SharpProp.IMixture"/>
+            </summary>
+            <param name="fluids">List of selected names of pure fluids.</param>
+            <param name="fractions">List of mass-based fractions.</param>
+            <exception cref="T:System.ArgumentException">
+                Invalid input! Fluids and Fractions should be of the same length.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid components! All of them
+                should be a pure fluid with HEOS backend.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid component mass fractions! All of them should be in (0;100) %.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid component mass fractions! Their sum should be equal to 100 %.
+            </exception>
+        </member>
+        <member name="T:SharpProp.HumidAir">
+            <inheritdoc cref="T:SharpProp.IHumidAir"/>
+        </member>
+        <member name="T:SharpProp.IHumidAir">
+            <summary>
+                Real humid air (see ASHRAE RP-1485).
+            </summary>
+        </member>
+        <member name="M:SharpProp.IHumidAir.Update(SharpProp.IKeyedInput{System.String},SharpProp.IKeyedInput{System.String},SharpProp.IKeyedInput{System.String})">
+            <summary>
+                Updates the state of the humid air.
+            </summary>
+            <param name="firstInput">First input property.</param>
+            <param name="secondInput">Second input property.</param>
+            <param name="thirdInput">Third input property.</param>
+            <exception cref="T:System.ArgumentException">
+                Need to define 3 unique inputs!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.Reset">
+            <summary>
+                Resets all properties.
+            </summary>
+        </member>
+        <member name="M:SharpProp.IHumidAir.WithState(SharpProp.IKeyedInput{System.String},SharpProp.IKeyedInput{System.String},SharpProp.IKeyedInput{System.String})">
+            <summary>
+                Returns a new humid air instance with a defined state.
+            </summary>
+            <param name="firstInput">First input property.</param>
+            <param name="secondInput">Second input property.</param>
+            <param name="thirdInput">Third input property.</param>
+            <returns>A new humid air instance with a defined state.</returns>
+            <exception cref="T:System.ArgumentException">
+                Need to define 3 unique inputs!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.DryCoolingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling without
+                dehumidification to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the temperature should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                The outlet temperature after dry heat transfer
+                should be greater than the dew point temperature!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.DryCoolingTo(UnitsNet.SpecificEnergy,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling without
+                dehumidification to a given enthalpy.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the enthalpy should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                The outlet enthalpy after dry heat transfer
+                should be greater than the dew point enthalpy!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.WetCoolingTo(UnitsNet.Temperature,UnitsNet.RelativeHumidity,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling with dehumidification
+                to a given temperature and relative humidity ratio.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="relativeHumidity">Relative humidity ratio.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the temperature should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                During the wet cooling process,
+                the absolute humidity ratio should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.WetCoolingTo(UnitsNet.Temperature,UnitsNet.Ratio,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling with dehumidification
+                to a given temperature and absolute humidity ratio.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="humidity">Absolute humidity ratio.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the temperature should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                During the wet cooling process,
+                the absolute humidity ratio should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.WetCoolingTo(UnitsNet.SpecificEnergy,UnitsNet.RelativeHumidity,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling with dehumidification
+                to a given enthalpy and relative humidity ratio.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="relativeHumidity">Relative humidity ratio.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the enthalpy should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                During the wet cooling process,
+                the absolute humidity ratio should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.WetCoolingTo(UnitsNet.SpecificEnergy,UnitsNet.Ratio,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of cooling with dehumidification
+                to a given enthalpy and absolute humidity ratio.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="humidity">Absolute humidity ratio.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the cooling process, the enthalpy should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                During the wet cooling process,
+                the absolute humidity ratio should decrease!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HeatingTo(UnitsNet.Temperature,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of heating to a given temperature.
+            </summary>
+            <param name="temperature">Temperature.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the heating process, the temperature should increase!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HeatingTo(UnitsNet.SpecificEnergy,System.Nullable{UnitsNet.Pressure})">
+            <summary>
+                The process of heating to a given enthalpy.
+            </summary>
+            <param name="enthalpy">Enthalpy.</param>
+            <param name="pressureDrop">
+                Pressure drop in the heat exchanger (optional).
+            </param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the heating process, the enthalpy should increase!
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                Invalid pressure drop in the heat exchanger!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HumidificationByWaterTo(UnitsNet.RelativeHumidity)">
+            <summary>
+                The process of humidification by water (isenthalpic)
+                to a given relative humidity ratio.
+            </summary>
+            <param name="relativeHumidity">Relative humidity ratio.</param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the humidification process,
+                the absolute humidity ratio should increase!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HumidificationByWaterTo(UnitsNet.Ratio)">
+            <summary>
+                The process of humidification by water (isenthalpic)
+                to a given absolute humidity ratio.
+            </summary>
+            <param name="humidity">Absolute humidity ratio.</param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the humidification process,
+                the absolute humidity ratio should increase!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HumidificationBySteamTo(UnitsNet.RelativeHumidity)">
+            <summary>
+                The process of humidification by steam (isothermal)
+                to a given relative humidity ratio.
+            </summary>
+            <param name="relativeHumidity">Relative humidity ratio.</param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the humidification process,
+                the absolute humidity ratio should increase!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.HumidificationBySteamTo(UnitsNet.Ratio)">
+            <summary>
+                The process of humidification by steam (isothermal)
+                to a given absolute humidity ratio.
+            </summary>
+            <param name="humidity">Absolute humidity ratio.</param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                During the humidification process,
+                the absolute humidity ratio should increase!
+            </exception>
+        </member>
+        <member name="M:SharpProp.IHumidAir.Mixing(UnitsNet.Ratio,SharpProp.IHumidAir,UnitsNet.Ratio,SharpProp.IHumidAir)">
+            <summary>
+                The mixing process.
+            </summary>
+            <param name="firstSpecificMassFlow">
+                Specific mass flow rate of the humid air at the first state.
+            </param>
+            <param name="first">Humid air at the first state.</param>
+            <param name="secondSpecificMassFlow">
+                Specific mass flow rate of the humid air the second state.
+            </param>
+            <param name="second">Humid air at the second state.</param>
+            <returns>The state of the humid air at the end of the process.</returns>
+            <exception cref="T:System.ArgumentException">
+                The mixing process is possible only for flows with the same pressure!
+            </exception>
+        </member>
+        <member name="T:SharpProp.IHumidAirState">
+            <summary>
+                Humid air state.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Compressibility">
+            <summary>
+                Compressibility factor (dimensionless).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Conductivity">
+            <summary>
+                Thermal conductivity (by default, W/m/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Density">
+            <summary>
+                Mass density per humid air unit (by default, kg/m3).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.DewTemperature">
+            <summary>
+                Dew-point temperature (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.DynamicViscosity">
+            <summary>
+                Dynamic viscosity (by default, mPa*s).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Enthalpy">
+            <summary>
+                Mass specific enthalpy per humid air (by default, kJ/kg).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Entropy">
+            <summary>
+                Mass specific entropy per humid air (by default, kJ/kg/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Humidity">
+            <summary>
+                Absolute humidity ratio (by default, g/kg d.a.).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.KinematicViscosity">
+            <summary>
+                Kinematic viscosity (by default, cSt).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.PartialPressure">
+            <summary>
+                Partial pressure of water vapor (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Prandtl">
+            <summary>
+                Prandtl number (dimensionless).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Pressure">
+            <summary>
+                Absolute pressure (by default, kPa).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.RelativeHumidity">
+            <summary>
+                Relative humidity ratio (by default, %).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.SpecificHeat">
+            <summary>
+                Mass specific constant pressure
+                specific heat per humid air (by default, kJ/kg/K).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.SpecificVolume">
+            <summary>
+                Mass specific volume per humid air unit (by default, m3/kg).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.Temperature">
+            <summary>
+                Dry-bulb temperature (by default, °C).
+            </summary>
+        </member>
+        <member name="P:SharpProp.IHumidAirState.WetBulbTemperature">
+            <summary>
+                Wet-bulb temperature (by default, °C).
+            </summary>
+        </member>
+        <member name="T:SharpProp.IClonable`1">
+            <summary>
+                Supports cloning, which creates a new instance of a class
+                with the same value as an existing instance.
+            </summary>
+            <typeparam name="T">Type of the instance.</typeparam>
+        </member>
+        <member name="M:SharpProp.IClonable`1.Clone">
+            <summary>
+                Performs deep (full) copy of the instance.
+            </summary>
+            <returns>Deep copy of the instance.</returns>
+        </member>
+        <member name="T:SharpProp.IFactory`1">
+            <summary>
+                Supports creating of new instances with no defined state.
+            </summary>
+            <typeparam name="T">Type of the instance.</typeparam>
+        </member>
+        <member name="M:SharpProp.IFactory`1.Factory">
+            <summary>
+                Creates a new instance with no defined state.
+            </summary>
+            <returns>A new instance with no defined state.</returns>
+        </member>
+        <member name="T:SharpProp.IJsonable">
+            <summary>
+                Supports converting to a JSON string.
+            </summary>
+        </member>
+        <member name="M:SharpProp.IJsonable.AsJson(System.Boolean)">
+            <summary>
+                Converts the instance to a JSON string.
+            </summary>
+            <param name="indented"><c>true</c> if indented.</param>
+            <returns>A JSON string.</returns>
+        </member>
+        <member name="T:SharpProp.IKeyedInput`1">
+            <summary>
+                CoolProp keyed input.
+            </summary>
+            <typeparam name="T">
+                Type of Coolprop internal keys
+                (<see cref="T:SharpProp.Parameters"/> for fluids and mixtures;
+                <see cref="T:System.String"/> for humid air).
+            </typeparam>
+        </member>
+        <member name="P:SharpProp.IKeyedInput`1.CoolPropKey">
+            <summary>
+                CoolProp internal key.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IKeyedInput`1.CoolPropHighLevelKey">
+            <summary>
+                CoolProp key in high-level interface.
+            </summary>
+        </member>
+        <member name="P:SharpProp.IKeyedInput`1.Value">
+            <summary>
+                Input value in SI units.
+            </summary>
+        </member>
+        <member name="T:SharpProp.Input">
+            <summary>
+                CoolProp keyed input for fluids and mixtures.
+            </summary>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+        <member name="M:SharpProp.Input.#ctor(SharpProp.Parameters,System.Double)">
+            <summary>
+                CoolProp keyed input for fluids and mixtures.
+            </summary>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+        <member name="M:SharpProp.Input.Density(UnitsNet.Density)">
+            <summary>
+                Mass density.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass density for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.Enthalpy(UnitsNet.SpecificEnergy)">
+            <summary>
+                Mass specific enthalpy.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass specific enthalpy for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.Entropy(UnitsNet.SpecificEntropy)">
+            <summary>
+                Mass specific entropy.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass specific entropy for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.InternalEnergy(UnitsNet.SpecificEnergy)">
+            <summary>
+                Mass specific internal energy.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass specific internal energy for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.Pressure(UnitsNet.Pressure)">
+            <summary>
+                Absolute pressure.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Absolute pressure for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.Quality(UnitsNet.Ratio)">
+            <summary>
+                Mass vapor quality.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass vapor quality for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.SpecificVolume(UnitsNet.SpecificVolume)">
+            <summary>
+                Mass specific volume.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Mass specific volume for the input.</returns>
+        </member>
+        <member name="M:SharpProp.Input.Temperature(UnitsNet.Temperature)">
+            <summary>
+                Temperature.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Temperature for the input.</returns>
+        </member>
+        <member name="T:SharpProp.InputHumidAir">
+            <summary>
+                CoolProp keyed input for humid air.
+            </summary>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.#ctor(System.String,System.Double)">
+            <summary>
+                CoolProp keyed input for humid air.
+            </summary>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Altitude(UnitsNet.Length)">
+            <summary>
+                Altitude above sea level.
+            </summary>
+            <remarks>
+                The pressure will be calculated by altitude above sea level
+                according to ASHRAE Fundamentals Handbook.
+            </remarks>
+            <param name="value">The value of the input.</param>
+            <returns>Altitude above sea level for the input.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                Altitude above sea level should be between -5000 and 11000 meters!
+            </exception>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Density(UnitsNet.Density)">
+            <summary>
+                Mass density per humid air unit.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>
+                Mass density per humid air unit for the input.
+            </returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.DewTemperature(UnitsNet.Temperature)">
+            <summary>
+                Dew-point temperature.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Dew-point temperature for the input.</returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Enthalpy(UnitsNet.SpecificEnergy)">
+            <summary>
+                Mass specific enthalpy per humid air.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>
+                Mass specific enthalpy per humid air for the input.
+            </returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Entropy(UnitsNet.SpecificEntropy)">
+            <summary>
+                Mass specific entropy per humid air.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>
+                Mass specific entropy per humid air for the input.
+            </returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Humidity(UnitsNet.Ratio)">
+            <summary>
+                Absolute humidity ratio.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Absolute humidity ratio for the input.</returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.PartialPressure(UnitsNet.Pressure)">
+            <summary>
+                Partial pressure of water vapor.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>
+                Partial pressure of water vapor for the input.
+            </returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Pressure(UnitsNet.Pressure)">
+            <summary>
+                Absolute pressure.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Absolute pressure for the input.</returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.RelativeHumidity(UnitsNet.RelativeHumidity)">
+            <summary>
+                Relative humidity ratio.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Relative humidity ratio for the input.</returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.SpecificVolume(UnitsNet.SpecificVolume)">
+            <summary>
+                Mass specific volume per humid air unit.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>
+                Mass specific volume per humid air unit for the input.
+            </returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.Temperature(UnitsNet.Temperature)">
+            <summary>
+                Dry-bulb temperature.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Dry-bulb temperature for the input.</returns>
+        </member>
+        <member name="M:SharpProp.InputHumidAir.WetBulbTemperature(UnitsNet.Temperature)">
+            <summary>
+                Wet-bulb temperature.
+            </summary>
+            <param name="value">The value of the input.</param>
+            <returns>Wet-bulb temperature for the input.</returns>
+        </member>
+        <member name="T:SharpProp.KeyedInput`1">
+            <inheritdoc cref="T:SharpProp.IKeyedInput`1"/>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+        <member name="M:SharpProp.KeyedInput`1.#ctor(`0,System.Double)">
+            <inheritdoc cref="T:SharpProp.IKeyedInput`1"/>
+            <param name="CoolPropKey">CoolProp internal key.</param>
+            <param name="Value">Input value in SI units.</param>
+        </member>
+    </members>
+</doc>

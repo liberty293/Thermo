@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UnitsNet.Serialization.JsonNet</name>
+    </assembly>
+    <members>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it. Specifies that an input argument was not null when the call returns.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue"/>, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with a field or property member.</summary>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.#ctor(System.String[])">
+            <summary>Initializes the attribute with the list of field and property members.</summary>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute">
+            <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values when returning with the specified return value condition.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String)">
+            <summary>Initializes the attribute with the specified return value condition and a field or property member.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="member">
+            The field or property member that is promised to be not-null.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.#ctor(System.Boolean,System.String[])">
+            <summary>Initializes the attribute with the specified return value condition and list of field and property members.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+            <param name="members">
+            The list of field and property members that are promised to be not-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute.Members">
+            <summary>Gets field or property member names.</summary>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter">
+            <summary>
+                JSON.net converter for all <see cref="T:UnitsNet.IQuantity" /> types (e.g. all units in UnitsNet)
+                Use this converter to serialize and deserialize UnitsNet types to and from JSON using the unit abbreviation schema.
+            </summary>
+            <example>
+            <code>
+            {
+                "Value": 1.20,
+                "Unit": "mg",
+                "Type": "Mass"
+            }
+            </code>
+            </example>
+            <inheritdoc />
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.#ctor">
+            <summary>
+                Construct a converter using the default list of quantities (case insensitive) and unit abbreviation provider
+            </summary>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Construct a converter using the default list of quantities and unit abbreviation provider
+            </summary>
+            <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.#ctor(System.Collections.Generic.IDictionary{System.String,UnitsNet.QuantityInfo},UnitsNet.UnitAbbreviationsCache,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Construct a converter using the provided map of {name : quantity}
+            </summary>
+            <param name="quantities">The dictionary of quantity names</param>
+            <param name="abbreviations">The unit abbreviations used for the serialization </param>
+            <param name="propertyComparer">The comparer used to compare the property names (e.g. StringComparer.OrdinalIgnoreCase) </param>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.WriteJson(Newtonsoft.Json.JsonWriter,UnitsNet.IQuantity,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.GetQuantityType(UnitsNet.IQuantity)">
+            <summary>
+                Get the string representation associated with the given quantity
+            </summary>
+            <param name="quantity">The quantity that is being serialized</param>
+            <returns>The string representation associated with the given quantity</returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,UnitsNet.IQuantity,System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.FindUnit(System.String,UnitsNet.QuantityInfo@)">
+            <summary>
+                Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
+                <remarks>
+                    An exhaustive search using all quantities is very likely to fail with an
+                    <exception cref="T:UnitsNet.AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
+                </remarks>
+            </summary>
+            <param name="unitAbbreviation">The unit abbreviation </param>
+            <param name="quantityInfo">The quantity type where the resulting unit was found </param>
+            <returns>The unit associated with the given <paramref name="unitAbbreviation" /></returns>
+            <exception cref="T:UnitsNet.AmbiguousUnitParseException"></exception>
+            <exception cref="T:UnitsNet.UnitNotFoundException"></exception>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.GetUnitAbbreviation(System.Enum)">
+            <summary>
+                Get the unit abbreviation associated with the given unit
+            </summary>
+            <param name="unit">Unit enum value, such as <see cref="F:UnitsNet.Units.MassUnit.Kilogram" />.</param>
+            <returns>The default abbreviation as provided by the associated <see cref="T:UnitsNet.UnitAbbreviationsCache" /></returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.GetUnitOrDefault(System.String,UnitsNet.QuantityInfo)">
+            <summary>
+                If the unit abbreviation is unspecified: returns the default (BaseUnit) unit for the
+                <paramref name="quantityInfo" />, otherwise attempts to <see cref="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.Parse(System.String,UnitsNet.QuantityInfo)" /> the
+                <paramref name="unitAbbreviation" />
+            </summary>
+            <param name="unitAbbreviation">
+                Unit abbreviation, such as "kg" or "m" for <see cref="F:UnitsNet.Units.MassUnit.Kilogram" /> and
+                <see cref="F:UnitsNet.Units.LengthUnit.Meter" /> respectively.
+            </param>
+            <param name="quantityInfo">The associated quantity info</param>
+            <returns>Unit enum value, such as <see cref="F:UnitsNet.Units.MassUnit.Kilogram" />.</returns>
+            <exception cref="T:UnitsNet.UnitNotFoundException">No units match the abbreviation.</exception>
+            <exception cref="T:UnitsNet.AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.Parse(System.String,UnitsNet.QuantityInfo)">
+            <param name="unitAbbreviation">
+                Unit abbreviation, such as "kg" or "m" for <see cref="F:UnitsNet.Units.MassUnit.Kilogram" /> and
+                <see cref="F:UnitsNet.Units.LengthUnit.Meter" /> respectively.
+            </param>
+            <param name="quantityInfo">The associated quantity info</param>
+            <returns>Unit enum value, such as <see cref="F:UnitsNet.Units.MassUnit.Kilogram" />.</returns>
+            <exception cref="T:UnitsNet.UnitNotFoundException">No units match the abbreviation.</exception>
+            <exception cref="T:UnitsNet.AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.TryParse(System.String,UnitsNet.QuantityInfo,System.Enum@)">
+            <param name="unitAbbreviation">
+                Unit abbreviation, such as "kg" or "m" for <see cref="F:UnitsNet.Units.MassUnit.Kilogram" /> and
+                <see cref="F:UnitsNet.Units.LengthUnit.Meter" /> respectively.
+            </param>
+            <param name="quantityInfo">The associated quantity info</param>
+            <param name="unit">The unit enum value as out result.</param>
+            <returns>True if successful.</returns>
+            <exception cref="T:UnitsNet.UnitNotFoundException">No units match the abbreviation.</exception>
+            <exception cref="T:UnitsNet.AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.TryGetQuantity(System.String,UnitsNet.QuantityInfo@)">
+            <summary>
+                Try to get the quantity info associated with a given quantity name
+            </summary>
+            <param name="quantityName">The name of the quantity: i.e. <see cref="P:UnitsNet.QuantityInfo.Name" /></param>
+            <param name="quantityInfo">The quantity information associated with the given quantity name</param>
+            <returns>
+                <value>true</value>
+                if a matching quantity is found or
+                <value>false</value>
+                otherwise
+            </returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.AbbreviatedUnitsConverter.GetQuantityInfo(System.String)">
+            <summary>
+                Get the quantity info associated with a given quantity name
+            </summary>
+            <param name="quantityName">The name of the quantity: i.e. <see cref="P:UnitsNet.QuantityInfo.Name" /></param>
+            <returns>
+                <value>true</value>
+                if a matching quantity is found or
+                <value>false</value>
+                otherwise
+            </returns>
+            <exception cref="T:UnitsNet.UnitsNetException">Quantity not found exception is thrown if no match found</exception>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.StringExtensions.Truncate(System.String,System.Int32,System.String)">
+            <summary>
+            Truncates a string to the given length, with truncation suffix.
+            </summary>
+            <param name="value">The string.</param>
+            <param name="maxLength">The max length, including <paramref name="truncationSuffix"/>.</param>
+            <param name="truncationSuffix">Suffix to append if truncated, defaults to "…".</param>
+            <returns>The truncated string if longer, otherwise the original string.</returns>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1">
+            <summary>
+            Base converter for serializing and deserializing UnitsNet types to and from JSON.
+            Contains shared functionality used by <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter"/> and <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetIComparableJsonConverter"/>
+            </summary>
+            <typeparam name="T">The type being converted. Should either be <see cref="T:UnitsNet.IQuantity"/> or <see cref="T:System.IComparable"/></typeparam>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.RegisterCustomType(System.Type,System.Type)">
+            <summary>
+            Register custom types so that the converter can instantiate these quantities.
+            Instead of calling <see cref="M:UnitsNet.Quantity.From(UnitsNet.QuantityValue,System.Enum)"/>, the <see cref="T:System.Activator"/> will be used to instantiate the object.
+            It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
+            Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
+            </summary>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ReadValueUnit(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Reads the "Unit" and "Value" properties from a JSON string
+            </summary>
+            <param name="jsonToken">The JSON data to read from</param>
+            <returns>A <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit"/></returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ConvertValueUnit(UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter{`0}.ValueUnit)">
+            <summary>
+            Convert a <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit"/> to an <see cref="T:UnitsNet.IQuantity"/>
+            </summary>
+            <param name="valueUnit">The value unit to convert</param>
+            <exception cref="T:UnitsNet.UnitsNetException">Thrown when an invalid Unit has been provided</exception>
+            <returns>An IQuantity</returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ConvertIQuantity(UnitsNet.IQuantity)">
+            <summary>
+            Convert an <see cref="T:UnitsNet.IQuantity"/> to a <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit"/>
+            </summary>
+            <param name="quantity">The quantity to convert</param>
+            <returns>A serializable object.</returns>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.CreateLocalSerializer(Newtonsoft.Json.JsonSerializer,Newtonsoft.Json.JsonConverter)">
+            <summary>
+            Create a copy of a serializer, retaining any settings but leaving out a converter to prevent loops
+            </summary>
+            <param name="serializer">The serializer to copy</param>
+            <param name="currentConverter">The converter to leave out</param>
+            <returns>A serializer with the same settings and all converters except the current one.</returns>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit">
+            <summary>
+                A structure used to serialize/deserialize Units.NET unit instances.
+            </summary>
+        </member>
+        <member name="P:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit.Unit">
+            <summary>
+                The unit of the value.
+            </summary>
+            <example>MassUnit.Pound</example>
+            <example>InformationUnit.Kilobyte</example>
+        </member>
+        <member name="P:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ValueUnit.Value">
+            <summary>
+                The value.
+            </summary>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ExtendedValueUnit">
+            <summary>
+                A structure used to serialize/deserialize non-double Units.NET unit instances.
+            </summary>
+            <remarks>
+                This type was added for lossless serialization of quantities with <see cref="T:System.Decimal"/> values.
+                The <see cref="T:System.Decimal"/> type distinguishes between 100 and 100.00 but Json.NET does not, therefore we serialize decimal values as string.
+            </remarks>
+        </member>
+        <member name="P:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ExtendedValueUnit.ValueString">
+            <summary>
+                The value as a string.
+            </summary>
+        </member>
+        <member name="P:UnitsNet.Serialization.JsonNet.UnitsNetBaseJsonConverter`1.ExtendedValueUnit.ValueType">
+            <summary>
+                The type of the value, e.g. "decimal".
+            </summary>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.UnitsNetIComparableJsonConverter">
+            <inheritdoc />
+            <summary>
+            JSON.Net converter for IComparable properties that are actually UnitsNet units.
+            Use with caution, as this might interfere with any other converters for IComparable.
+            Must be registered in the <see cref="P:Newtonsoft.Json.JsonSerializerSettings.Converters"/> collection -after- <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter"/>
+            Should only be used when UnitsNet types are assigned to properties of type IComparable.
+            Requires TypeNameHandling on <see cref="T:Newtonsoft.Json.JsonSerializerSettings"/> to be set to something other than <see cref="F:Newtonsoft.Json.TypeNameHandling.None"/> so that it outputs $type when serializing.
+            </summary>
+        </member>
+        <member name="P:UnitsNet.Serialization.JsonNet.UnitsNetIComparableJsonConverter.CanWrite">
+            <summary>
+            Indicates if this JsonConverter is capable of writing JSON
+            </summary>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetIComparableJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.IComparable,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Serialize an IComparable to JSON.
+            Not implemented. Instead <see cref="M:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,UnitsNet.IQuantity,Newtonsoft.Json.JsonSerializer)"/> is always used to serialize an IComparable when it is a UnitsNet quantity.
+            </summary>
+            <param name="writer">The writer to use</param>
+            <param name="value">The value to serialize</param>
+            <param name="serializer">The serializer to use</param>
+            <remarks>
+            Because this converter should only be used in combination with the <see cref="T:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter"/>, the WriteJson method of that converter will always be used
+            to serialize an IComparable in the context of UnitsNet.
+            JsonNet is capable of serializing any IComparable implementation.</remarks>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetIComparableJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.IComparable,System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Attempts to deserialize a JSON string as UnitsNet type, assigned to property of type IComparable
+            </summary>
+            <param name="reader">The JsonReader to access the JSON data to read</param>
+            <param name="objectType">The type of object to deserialize</param>
+            <param name="existingValue">An existing value, if any (which is ignored)</param>
+            <param name="hasExistingValue">Indicates if there is an existing value that should be updated (which is ignored)</param>
+            <param name="serializer">The JsonSerializer to use for deserialization</param>
+            <returns>A deserialized IComparable</returns>
+        </member>
+        <member name="T:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter">
+            <inheritdoc />
+            <summary>
+            JSON.net converter for IQuantity types (e.g. all units in UnitsNet)
+            Use this converter to serialize and deserialize UnitsNet types to and from JSON
+            </summary>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,UnitsNet.IQuantity,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
+            <param name="value">The value to write.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="M:UnitsNet.Serialization.JsonNet.UnitsNetIQuantityJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,UnitsNet.IQuantity,System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader" /> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="hasExistingValue">Indicates if an existing value has been provided</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>
+            The object value.
+            </returns>
+            <exception cref="T:UnitsNet.UnitsNetException">Unable to parse value and unit from JSON.</exception>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SharpProp</id>
+    <version>7.1.0</version>
+    <title>SharpProp</title>
+    <authors>Vladimir Portyanikhin</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>NuGet.md</readme>
+    <projectUrl>https://github.com/portyanikhin/SharpProp</projectUrl>
+    <description>A simple, full-featured, lightweight, cross-platform CoolProp wrapper for C#</description>
+    <releaseNotes>Release notes can be found at https://github.com/portyanikhin/SharpProp/releases</releaseNotes>
+    <copyright>Copyright (c) Vladimir Portyanikhin 2021</copyright>
+    <tags>native cross-platform CoolProp fluids mixtures humid air thermophysical properties thermodynamics</tags>
+    <repository type="git" url="https://github.com/portyanikhin/SharpProp" commit="fe4b2bc6764e889be76c58563c85d1052cdff6aa" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Enums.NET" version="4.0.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.NumberExtensions" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.Serialization.JsonNet" version="5.28.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Enums.NET" version="4.0.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.NumberExtensions" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.Serialization.JsonNet" version="5.28.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Enums.NET" version="4.0.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.NumberExtensions" version="5.36.0" exclude="Build,Analyzers" />
+        <dependency id="UnitsNet.Serialization.JsonNet" version="5.28.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
