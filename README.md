@@ -1,5 +1,5 @@
-# Thermo
- 3D vapor doe
+# Thermos
+ 3D vapor dome
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
