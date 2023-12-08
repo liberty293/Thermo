@@ -2086,8 +2086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   domecsv: TPs1s2
-  origin: {x: -5, y: -2.5}
-  scale: {x: 1, y: 0.02}
+  origin: {x: -5, y: -2}
+  scale: {x: 1, y: 0.018}
   Ts: 1
   maxindex: 0
 --- !u!120 &984166605
@@ -2983,7 +2983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pressure (MPa)
+  m_text: Temperature (C)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
