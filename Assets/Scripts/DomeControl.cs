@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class DomeControl : MonoBehaviour
 {
     public Slider xval, yval, zval, zoom;
+    public Vector4 TsDiagram, PsDiagram, TPDiagram;
+    public float TurnSpeed = .5f;
     PropertyTrace pt;
     CycleControl cc;
     Transform cam;
 
     Vector3 offset = new Vector3(5, 0, 5);
     Vector3 target;
+
     private void Awake()
     {
         target = transform.position + offset;
@@ -21,9 +24,15 @@ public class DomeControl : MonoBehaviour
     }
     private void Start()
     {
+        //StartCoroutine(Rotate(Quaternion.Euler(PsDiagram.x, PsDiagram.y, PsDiagram.z), PsDiagram));
         Rotate();
         Zoom();
     }
+
+    public void TsRotation () => StartCoroutine(Rotate(Quaternion.Euler(TsDiagram.x, TsDiagram.y, TsDiagram.z), TsDiagram));
+    public void PsRotation () => StartCoroutine(Rotate(Quaternion.Euler(PsDiagram.x, PsDiagram.y, PsDiagram.z), PsDiagram));
+    public void TPRotation() => StartCoroutine(Rotate(Quaternion.Euler(TPDiagram.x, TPDiagram.y, TPDiagram.z), TPDiagram));
+
     public void Rotate()
     {
         //float x = offset.x + zoom.value * Mathf.Sin(xval.value)*Mathf.Cos(yval.value);
@@ -34,8 +43,8 @@ public class DomeControl : MonoBehaviour
         //cam.rotation = Quaternion.LookRotation(target-cam.position,cam.up);
         transform.rotation = Quaternion.Euler(xval.value, yval.value, zval.value);
 
-        pt?.Rotate(-xval.value, yval.value, -zval.value);
-        cc?.Rotate(-xval.value, yval.value, -zval.value);
+        //pt?.Rotate(-xval.value, yval.value, -zval.value);
+        //cc?.Rotate(-xval.value, yval.value, -zval.value);
     }
 
     public void Zoom()
@@ -45,5 +54,30 @@ public class DomeControl : MonoBehaviour
         //cam.rotation = Quaternion.Euler(new Vector3(cam.rotation.eulerAngles.x, cam.rotation.eulerAngles.y, newz));
         //currentzval = zval.value;
         //Debug.Log(zval.value);
+    }
+
+    void SetPosition(Vector4 pos)
+    {
+        xval.value = pos.x;
+        yval.value = pos.y;
+        zval.value = pos.z;
+        zoom.value = pos.w;
+
+
+    }
+
+    IEnumerator Rotate(Quaternion pos, Vector4 posvec)
+    {
+        float time = 0;
+        Quaternion initial = transform.rotation;
+        while (time < TurnSpeed)
+        {
+            transform.rotation = Quaternion.Lerp(initial, pos, time / TurnSpeed);
+            time += Time.deltaTime;
+            Debug.Log(time);
+            yield return null;
+        }
+        transform.rotation = pos;
+        SetPosition(posvec);
     }
 }

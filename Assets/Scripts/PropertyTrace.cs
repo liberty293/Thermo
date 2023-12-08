@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: remove isotherm
+//switch only between 2 views to see isobar straight vs curved
+//on cycles already have the square set up
 
 public class PropertyTrace : MonoBehaviour
 {

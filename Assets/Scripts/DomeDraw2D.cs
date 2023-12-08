@@ -9,6 +9,7 @@ public class DomeDraw2D : MonoBehaviour
     LineRenderer lr;
     public string domecsv;
     public Vector2 origin, scale;
+    public bool Ts = true;
 
     [HideInInspector]
     public List<Vector3> points { get; private set; }
@@ -34,10 +35,18 @@ public class DomeDraw2D : MonoBehaviour
             //   Debug.Log(float.Parse(row[0])/100);
             if (!float.TryParse(row[2], out _))
                 continue;
-
-            pressures.Add(float.Parse(row[1]));
-            Vector3 point = new Vector3(float.Parse(row[2])*scale.x, float.Parse(row[0]) * scale.y, 0);
-            points.Add(point + (Vector3)origin);
+            if (Ts)
+            {
+                pressures.Add(float.Parse(row[1]));
+                Vector3 point = new Vector3(float.Parse(row[2]) * scale.x, float.Parse(row[0]) * scale.y, 0);
+                points.Add(point + (Vector3)origin);
+            }
+            else
+            {
+                pressures.Add(float.Parse(row[0])); //these are actually the temos
+                Vector3 point = new Vector3(float.Parse(row[2]) * scale.x, float.Parse(row[1]) * scale.y, 0);
+                points.Add(point + (Vector3)origin);
+            }
 
         }
 
@@ -49,9 +58,16 @@ public class DomeDraw2D : MonoBehaviour
             if (!float.TryParse(row[2], out _))
                 continue;
 
-
-            Vector3 point = new Vector3(float.Parse(row[3])*scale.x, float.Parse(row[0]) * scale.y, 0);
-            points.Add(point + (Vector3)origin);
+            if (Ts)
+            {
+                Vector3 point = new Vector3(float.Parse(row[3]) * scale.x, float.Parse(row[0]) * scale.y, 0);
+                points.Add(point + (Vector3)origin);
+            }
+            else
+            {
+                Vector3 point = new Vector3(float.Parse(row[3]) * scale.x, float.Parse(row[1]) * scale.y, 0);
+                points.Add(point + (Vector3)origin);
+            }
 
 
         }

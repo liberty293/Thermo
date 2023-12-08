@@ -15,7 +15,7 @@ public class ShowIsos : MonoBehaviour
     {
         btn = GetComponent<Button>();
         pt = FindObjectOfType<PropertyTrace>();
-        btn.onClick.AddListener(btclicked);
+    //    btn.onClick.AddListener(btclicked);
     }
 
     // Update is called once per frame
