@@ -46,9 +46,9 @@ Pagina Dos
         While this relationship is true, the slope is still 0 while within the dome. Why do you think that is?
       </p>
            <a href="../Pagina1/index.html">
-        <button align="left">Previous Page</button>
+        <button>Previous Page</button>
     </a>
-      <a align="center" href="../Pagina3/index.html">
+      <a href="../Pagina3/index.html">
         <button>Next Page</button>
     </a>
 
