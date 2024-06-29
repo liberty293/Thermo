@@ -2424,6 +2424,10 @@ MonoBehaviour:
   yval: {fileID: 1277680316}
   zval: {fileID: 942332368}
   zoom: {fileID: 383006843}
+  TsDiagram: {x: 0, y: 0, z: 0, w: 0}
+  PsDiagram: {x: 0, y: 0, z: 0, w: 0}
+  TPDiagram: {x: 0, y: 0, z: 0, w: 0}
+  TurnSpeed: 0.5
 --- !u!114 &1178569558
 MonoBehaviour:
   m_ObjectHideFlags: 0

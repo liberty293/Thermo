@@ -35,16 +35,16 @@ public class DomeControl : MonoBehaviour
 
     public void Rotate()
     {
-        //float x = offset.x + zoom.value * Mathf.Sin(xval.value)*Mathf.Cos(yval.value);
+        //float x = offset.x + zoom.value * Mathf.Sin(xval.value) * Mathf.Cos(yval.value);
         //Debug.Log(x);
         //float y = offset.y + zoom.value * Mathf.Sin(xval.value) * Mathf.Sin(yval.value);
         //float z = offset.z + zoom.value * Mathf.Cos(xval.value);
         //cam.position = new Vector3(x, y, z);
-        //cam.rotation = Quaternion.LookRotation(target-cam.position,cam.up);
+        //cam.rotation = Quaternion.LookRotation(target - cam.position, cam.up);
         transform.rotation = Quaternion.Euler(xval.value, yval.value, zval.value);
 
-        //pt?.Rotate(-xval.value, yval.value, -zval.value);
-        //cc?.Rotate(-xval.value, yval.value, -zval.value);
+//        pt?.Rotate(-xval.value, yval.value, -zval.value);
+        cc?.Rotate(-xval.value, yval.value, -zval.value);
     }
 
     public void Zoom()

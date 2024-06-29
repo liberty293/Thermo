@@ -206,7 +206,7 @@ public class CycleControl : MonoBehaviour
             //check if an isobar
             if (Positions[i-1].x == Positions[i].x)
             {
-                Debug.Log("isobar");
+///                Debug.Log("isobar");
                 //grab everything at that pressure. Note this
                 var potentials = properties.GetDataByPressure(Positions[i].x * 100);
                 //Debug.Log(potentials.Length);
@@ -218,14 +218,14 @@ public class CycleControl : MonoBehaviour
                 else
                     connectingData = potentials.Where(x => x.y > Positions[i - 1].y)
                     .Where(x => x.y < Positions[i].y);
-                //Debug.Log(connectingData.Count());
+                Debug.Log(connectingData.Count());
                 //then add
                 linePos.AddRange(connectingData);
             }
             //check if isotherm
             else if (Positions[i - 1].y == Positions[i].y)
             {
-                Debug.Log("isotherm");
+//                Debug.Log("isotherm");
                 //grab everything at that temp
                 var potentials = properties.GetDataByTemp(Positions[i].y*100); //this is scaled for the line
                 //filter by pres
@@ -237,7 +237,10 @@ public class CycleControl : MonoBehaviour
                 else
                     connectingData = potentials.Where(x => x.x > Positions[i - 1].x)
                         .Where(x => x.x < Positions[i].x);
-                //Debug.Log(connectingData.Count());
+                //foreach (var c in connectingData)
+                //{
+                //    Debug.Log(c);
+                //};
                 //then add
                 linePos.AddRange(connectingData);
             }
@@ -314,6 +317,7 @@ public class CycleControl : MonoBehaviour
         truepos =  linePos.ToArray();
         Translate(ref truepos, origin);
         lr.positionCount = truepos.Length;
+        lr.SetPositions(truepos);
         dc.Rotate();
         
 

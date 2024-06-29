@@ -42,7 +42,7 @@ public class PropertyDataSO : ScriptableObject
     }
     public Vector3[] GetDataByPressure(float pressure)
     {
-//        Debug.Log(PTS[0]);
+
         return PTS.Where(x => x.x == pressure/100).ToArray();
     }
 
