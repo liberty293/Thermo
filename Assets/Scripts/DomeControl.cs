@@ -8,7 +8,7 @@ public class DomeControl : MonoBehaviour
 {
     public Slider xval, yval, zval, zoom;
     public Vector4 TsDiagram, PsDiagram, TPDiagram;
-    public float TurnSpeed = .5f, msp=1.5f, x,y,z;
+    public float TurnSpeed = .5f, msp = .1f;
     PropertyTrace pt;
     CycleControl cc;
     Transform cam;
@@ -71,7 +71,7 @@ public class DomeControl : MonoBehaviour
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
 
-            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X"),0)*msp, Space.World);
+            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X"),0)/Time.deltaTime * msp, Space.World);
             SetPosition(new Vector4(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z, zoom.value));
         }
     }

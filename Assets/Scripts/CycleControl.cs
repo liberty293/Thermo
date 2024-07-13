@@ -21,6 +21,7 @@ public class CycleControl : MonoBehaviour
     //State3P, State3T, State3S,
     //State4P, State4T, State4S;
     public Vector3 origin;
+    public GameObject errorMessage;
     Vector3[] truepos;
     Vector3 offset = new Vector3(0, 180, 0);
     public TMP_Dropdown P1, P2, T1, T2;
@@ -114,13 +115,18 @@ public class CycleControl : MonoBehaviour
         }
     }
 
+    void ShowErrorMessage(bool show)
+    {
+        errorMessage.SetActive(show);
+    }
+
     //TODO: temp and entropy go blank when selecting pressure DONE
     //TODO: that's a bad idea but its easier
     //TODO: entropy dropdown is greyed out unless multiple options
     //TODO: add a button to clear everything
     public void FilterData(float filter, property changed, int state)
     {
-        //        Debug.Log(filter);
+        ShowErrorMessage(false);
         switch (changed)
         {
             case (property.pressure):
@@ -134,7 +140,7 @@ public class CycleControl : MonoBehaviour
                 dropdowns[state][1].ClearOptions();
                 stateset[state] = false;
                 temps = properties.GrabTemps(properties.GetDataByPressure(filter));
-                //Debug.Log(temps.Count);
+                //Debug.Log(temps);
                 temps = temps.Where(x => tempOps.Any(y => y == x)).ToList();
                 //Debug.Log(temps.Count);
                 SetDropdown(dropdowns[state][1], temps, "Temperature");
@@ -152,7 +158,6 @@ public class CycleControl : MonoBehaviour
                 if (stateset[0] && stateset[1])
                 {
 
-
                     statePos[0].x = float.Parse(dropdowns[0][0].captionText.text) / 100;
                     statePos[0].y = float.Parse(dropdowns[0][1].captionText.text) / 100;
                     statePos[1].x = float.Parse(dropdowns[0][0].captionText.text) / 100;
@@ -164,7 +169,11 @@ public class CycleControl : MonoBehaviour
 
                     for (int i = 0; i < 4; i++)
                     {
-                        statePos[i].z = properties.GrabEntropies(statePos[i].y * 100, statePos[i].x * 100)[0];
+                        //TODO: be less lazy
+                        if (properties.GrabEntropies(statePos[i].y * 100, statePos[i].x * 100).Count() < 1)
+                            ShowErrorMessage(true);
+                        else
+                            statePos[i].z = properties.GrabEntropies(statePos[i].y * 100, statePos[i].x * 100)[0];
                     }
 
 
@@ -196,7 +205,7 @@ public class CycleControl : MonoBehaviour
     {
         for (int i = 0; i < Positions.Length; i++)
         {
-            Debug.Log(Positions[i]);
+//            Debug.Log(Positions[i]);
         }
         linePos.Clear();
         linePos.Add(Positions[0]);
