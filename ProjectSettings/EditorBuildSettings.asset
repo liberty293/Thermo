@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VaporDome Ps.unity
     guid: da85d3e2f7c3843b4b31f5bfe8058d19
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cycles.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/VaporDome Ts.unity
     guid: e8a12322d3abb484a9043aa1c24f7ca4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Isos.unity
     guid: 0ff09f4d2bc9f45aea638fcfe9833d09
   m_configObjects: {}

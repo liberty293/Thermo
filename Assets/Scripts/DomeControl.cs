@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DomeControl : MonoBehaviour
 {
     public Slider xval, yval, zval, zoom;
     public Vector4 TsDiagram, PsDiagram, TPDiagram;
-    public float TurnSpeed = .5f;
+    public float TurnSpeed = .5f, msp=1.5f, x,y,z;
     PropertyTrace pt;
     CycleControl cc;
     Transform cam;
@@ -41,6 +42,7 @@ public class DomeControl : MonoBehaviour
         //float z = offset.z + zoom.value * Mathf.Cos(xval.value);
         //cam.position = new Vector3(x, y, z);
         //cam.rotation = Quaternion.LookRotation(target - cam.position, cam.up);
+
         transform.rotation = Quaternion.Euler(xval.value, yval.value, zval.value);
 
 //        pt?.Rotate(-xval.value, yval.value, -zval.value);
@@ -62,8 +64,16 @@ public class DomeControl : MonoBehaviour
         yval.value = pos.y;
         zval.value = pos.z;
         zoom.value = pos.w;
+    }
 
+    private void Update()
+    {
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
 
+            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X"),0)*msp, Space.World);
+            SetPosition(new Vector4(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z, zoom.value));
+        }
     }
 
     IEnumerator Rotate(Quaternion pos, Vector4 posvec)

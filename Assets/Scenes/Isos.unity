@@ -1865,6 +1865,7 @@ MonoBehaviour:
   PsDiagram: {x: 0, y: 87, z: 281, w: -25}
   TPDiagram: {x: 0, y: 170, z: 360, w: -25}
   TurnSpeed: 1.11
+  msp: 2
 --- !u!114 &1178569558
 MonoBehaviour:
   m_ObjectHideFlags: 0
