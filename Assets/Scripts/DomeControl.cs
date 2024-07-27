@@ -84,7 +84,7 @@ public class DomeControl : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(initial, pos, time / TurnSpeed);
             time += Time.deltaTime;
-            Debug.Log(time);
+//            Debug.Log(time);
             yield return null;
         }
         transform.rotation = pos;

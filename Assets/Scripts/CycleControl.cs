@@ -31,7 +31,7 @@ public class CycleControl : MonoBehaviour
     public LineRenderer lr;
     DomeControl dc;
     public PropertyDataSO properties;
-    List<float> pressures, temps, tempOps, ses;
+    List<float> pressures, temps, tempOps;
 
     Vector3[] statePos = new Vector3[4];
     List<Vector3> linePos = new List<Vector3> ();

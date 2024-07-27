@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 //TODO: remove isotherm
@@ -11,36 +13,73 @@ public class PropertyTrace : MonoBehaviour
     [TooltipAttribute("Temp, then pressure")]
     public LineRenderer[] lr; //temp, then pressure
     public PropertyDataSO properties;
+    List<float> pressures, temps;
+    public TMP_Dropdown P, T;
     public Vector3 orign;
-    public float pressure = 75.431f;
-    public float temp = 390.69f;
+    float pressure;
+    float temp;
+    float x, y, z;
     Vector3 offset = new Vector3(0, 180, 0);
-    List<Vector3[]> truePos = new List<Vector3[]>();
+    Vector3[] tempPs = new Vector3[0];
+    Vector3[] presPs = new Vector3[0];
+    //List<Vector3[]> truePos = new List<Vector3[]>();
     // Start is called before the first frame update
     void Awake()
     {
         //TODO: fix this its dumb
         properties.loadProp();
-        ShowIsotherm(temp);
-        ShowIsobar(pressure);
+        //ShowIsobar(75.431f);
         //initRotate(0,0,0);
-        var tempPos = new Vector3[lr[0].positionCount];
-        lr[0].GetPositions(tempPos);
-        truePos.Add(tempPos);
-        var tempPos1 = new Vector3[lr[1].positionCount];
-        lr[1].GetPositions(tempPos1);
-        truePos.Add(tempPos1);
+        //var tempPos = new Vector3[lr[0].positionCount];
+        //lr[0].GetPositions(tempPos);
+        //truePos.Add(tempPos);
+        //var tempPos1 = new Vector3[lr[1].positionCount];
+        //lr[1].GetPositions(tempPos1);
+        //truePos.Add(tempPos1);
         //        Debug.Log(properties.GetDataByPressure(.01f)[0]);
-        Rotate(0, 0, 0);
+        //Rotate(0, 0, 0);
+    }
+
+    void LoadTemperatures()
+    {
+        TextAsset dataprop = Resources.Load<TextAsset>("Temps");
+        string[] data = dataprop.text.Split("\n");
+        temps = new List<float>();
+        for (int i = 1; i < data.Length; i++)
+        {
+            temps.Add(float.Parse(data[i]));
+        }
     }
 
     private void Start()
     {
-
+        pressures = properties.GrabPressures();
+        LoadTemperatures();
+        SetDropdown(P, pressures, "Pressure");
+        SetDropdown(T, temps, "Temperature");
+        P.onValueChanged.AddListener(e =>
+        {
+            
+            if (float.TryParse(P.captionText.text, out pressure))
+                ShowIsobar(pressure);
+        });
+        T.onValueChanged.AddListener(e =>
+        {
+            if (float.TryParse(T.captionText.text, out temp))
+                ShowIsotherm(temp);
+        });
     }
 
-    // Update is called once per frame
-    void initRotate(float angleX, float angleY, float angleZ)
+    void SetDropdown(TMP_Dropdown d2set, List<float> data, string selector)
+    {
+        d2set.AddOptions(new List<string>() { "Select " + selector });
+
+        d2set.AddOptions(data.Select(x => x.ToString()).ToList());
+    }
+
+
+        // Update is called once per frame
+        void initRotate(float angleX, float angleY, float angleZ)
     {
 
         for (int i = 0; i < lr.Length; i++)
@@ -61,18 +100,26 @@ public class PropertyTrace : MonoBehaviour
 
     public void Rotate(float angleX, float angleY, float angleZ)
     {
-
-        for (int i = 0; i < lr.Length; i++)
+        x = angleX; y = angleY; z = angleZ;
+        //rotate pressure
+        Vector3[] newPos = new Vector3[lr[1].positionCount];
+        for (int r = 0; r < presPs.Length; r++)
         {
-            Vector3[] newPos = new Vector3[lr[i].positionCount];
-            for (int r = 0; r < truePos[i].Length; r++)
-            {
-                newPos[r] = Quaternion.Euler(offset) * Quaternion.Euler(angleX, angleY, angleZ) * truePos[i][r];
-                //Debug.Log(newPos[r]);
-            }
-          //  Debug.Log(i);
-            lr[i].SetPositions(newPos);
+            newPos[r] = Quaternion.Euler(offset) * Quaternion.Euler(angleX, angleY, angleZ) * presPs[r];
+            //Debug.Log(newPos[r]);
         }
+        //  Debug.Log(i);
+        lr[1].SetPositions(newPos);
+
+        //rotate temp
+        newPos = new Vector3[lr[0].positionCount];
+        for (int r = 0; r < tempPs.Length; r++)
+        {
+            newPos[r] = Quaternion.Euler(offset) * Quaternion.Euler(angleX, angleY, angleZ) * tempPs[r];
+            //Debug.Log(newPos[r]);
+        }
+        //  Debug.Log(i);
+        lr[0].SetPositions(newPos);
 
     }
     void Translate(ref Vector3[] props, Vector3 factor) {
@@ -84,29 +131,42 @@ public class PropertyTrace : MonoBehaviour
     }
 
     //TODO: Getting the data is a pain
-    public void ShowIsotherm(float T)
+     void ShowIsotherm(float T)
     {
-        Vector3[] props = properties.GetDataByTemp(T);
-        Translate(ref props,orign);
-        lr[0].positionCount = props.Length;
-        lr[0].SetPositions(props);
+        tempPs = properties.GetDataByTemp(T);
+        //Debug.Log(props[5]);
+        Translate(ref tempPs, orign);
+        lr[0].positionCount = tempPs.Length;
+        lr[0].SetPositions(tempPs);
+        Rotate(x, y, z);
     }
 
-    public void ShowIsobar(float P)
+     void ShowIsobar(float P)
     {
-        Vector3[] props = properties.GetDataByPressure(P);
-        Translate(ref props, orign);
-        lr[1].positionCount = props.Length;
-        lr[1].SetPositions(props);
+        presPs = properties.GetDataByPressure(P);
+        Translate(ref presPs, orign);
+        lr[1].positionCount = presPs.Length;
+        lr[1].SetPositions(presPs);
+        Rotate(x, y, z);
     }
 
-    public void HideIsotherm()
-    {
-        lr[0].positionCount = 0;
-    }
+    //public void HideShowP(bool show)
+    //{
+    //    if (show) ShowIsobar(pressure); else HideIsobar();
+    //}
 
-    public void HideIsobar()
-    {
-        lr[1].positionCount = 0;
-    }
+    //public void HideShowT(bool show)
+    //{
+    //    if (show) ShowIsotherm(temp); else HideIsotherm();
+    //}
+
+    //void HideIsotherm()
+    //{
+    //    lr[0].positionCount = 0;
+    //}
+
+    // void HideIsobar()
+    //{
+    //    lr[1].positionCount = 0;
+    //}
 }

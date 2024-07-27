@@ -67,7 +67,7 @@ public class PropertyDataSO : ScriptableObject
         var pressures = fromArray.Select(x => x.x*100);
         return pressures.Distinct().ToList();
     }
-     List<float> GrabTemps()
+    public List<float> GrabTemps()
     {
         var pressures = PTS.Select(x => x.y*100);
         return pressures.Distinct().ToList();

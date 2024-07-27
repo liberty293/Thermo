@@ -19,20 +19,20 @@ public class ShowIsos : MonoBehaviour
     }
 
     // Update is called once per frame
-    void btclicked()
-    {
-        clicked = !clicked;
+    //void btclicked()
+    //{
+    //    clicked = !clicked;
         
-        switch (type)
-        {
-            case property.pressure:
-                if (clicked) pt.ShowIsobar(value); else pt.HideIsobar();
-                break;
-            case property.temp:
-                if (clicked) pt.ShowIsotherm(value); else pt.HideIsotherm();
-                    break;
-            default:
-                break;
-        }
-    }
+    //    switch (type)
+    //    {
+    //        case property.pressure:
+    //            if (clicked) pt.ShowIsobar(value); else pt.HideIsobar();
+    //            break;
+    //        case property.temp:
+    //            if (clicked) pt.ShowIsotherm(value); else pt.HideIsotherm();
+    //                break;
+    //        default:
+    //            break;
+    //    }
+    //}
 }
