@@ -47,7 +47,9 @@ public class PropertyTrace : MonoBehaviour
         temps = new List<float>();
         for (int i = 1; i < data.Length; i++)
         {
-            temps.Add(float.Parse(data[i]));
+            var temp = float.Parse(data[i]);
+            if(temp > 30)
+                temps.Add(temp);
         }
     }
 
